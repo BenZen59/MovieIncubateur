@@ -1,4 +1,5 @@
 import MovieCard from './components/MovieCard/MovieCard';
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {

@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../Header/Header';
+import { connect } from 'react-redux';
+import * as actionTypes from '../../store/actionType';
 
 export default function MovieCard() {
   const [dataFilms, setDataFilms] = useState([]);
+  const [favoris, setFavoris] = useState([]);
+
   useEffect(() => {
     axios
       .get(

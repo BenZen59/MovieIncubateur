@@ -21,10 +21,8 @@ export default function Search() {
   };
   return (
     <div>
-      {/* W=565px H=68px */}
-
       <input
-        className='w-96 border-solid border-2 border-stone-700 p-1 ml-[44%] mt-2 mr-4 text-base rounded-md '
+        className='w-96 border-solid border-2 border-stone-700 p-1 ml-[44%] mt-4 mr-4 text-base rounded-md '
         type='text'
         placeholder='Search a movie ...'
         value={query}

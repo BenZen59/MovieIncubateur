@@ -1,11 +1,38 @@
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addMovies } from '../../redux/actions/movieActions';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { connect } from 'react-redux';
-import * as actionTypes from '../../store/actionType';
 
 export default function MovieCard() {
   const [dataFilms, setDataFilms] = useState([]);
-  const [favoris, setFavoris] = useState([]);
+  const [titles, setTitles] = useState([]);
+  const [backdrops, setBackdrops] = useState([]);
+  const movies = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const { id } = useParams();
+
+  const addFavori = () => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/movie/${id}?api_key=599ded6f0fc3bcaee1882e83ae0d438a`
+      )
+      .then(({ data }) => {
+        setTitles(data.original_title);
+        setBackdrops(data.backdrop_path);
+      });
+    dispatch(
+      addMovies({
+        id: { id },
+        title: titles,
+        backdrop: backdrops,
+      })
+    );
+  };
+
+  const removeFavori = () => {
+    alert('TEST');
+  };
 
   useEffect(() => {
     axios
@@ -16,6 +43,7 @@ export default function MovieCard() {
         setDataFilms(data.results);
       });
   }, []);
+
   return (
     <>
       <div className='flex flex-wrap'>
@@ -31,10 +59,16 @@ export default function MovieCard() {
                 alt='imgmovie'
               />
               <div className='text-lg mt-2 '>
-                <button className='w-20 h-12 text-center bg-cyan-500 outline outline-offset-2 outline-cyan-500 m-2 rounded-md'>
+                <button
+                  className='w-20 h-12 text-center bg-cyan-500 outline outline-offset-2 outline-cyan-500 m-2 rounded-md'
+                  onClick={addFavori}
+                >
                   Add
                 </button>
-                <button className='w-20 h-12 text-center bg-red-500 outline outline-offset-2 outline-red-500 border-none m-2 rounded-md'>
+                <button
+                  className='w-20 h-12 text-center bg-red-500 outline outline-offset-2 outline-red-500 border-none m-2 rounded-md'
+                  onClick={removeFavori}
+                >
                   Remove
                 </button>
                 <button className='w-20 h-12 text-center bg-orange-500 outline outline-offset-2 outline-orange-500 border-none m-2 rounded-md'>

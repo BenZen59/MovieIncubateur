@@ -6,12 +6,17 @@ import { addMovies } from '../../redux/actions/movieActions';
 function Favori() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.allMovies.movies);
-  const dataObject = [
-    {
-      title: data.payload.title,
-      backdrop: data.payload.backdrop_path,
-    },
-  ];
+  let dataObject = [];
+  try {
+    dataObject = [
+      {
+        title: data.payload.title,
+        backdrop: data.payload.backdrop_path,
+      },
+    ];
+  } catch (e) {
+    console.log('Something went wrong', e);
+  }
 
   useEffect(() => {
     const dataFromLocalStorage = localStorage.getItem('movieData');

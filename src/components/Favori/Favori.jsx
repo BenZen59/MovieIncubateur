@@ -1,13 +1,38 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { addMovies } from '../../redux/actions/movieActions';
 
 function Favori() {
-  const movies = useSelector((state) => state.allMovies.movies);
-  const { id, title } = movies[0];
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.allMovies.movies);
+  const dataObject = [
+    {
+      title: data.payload.title,
+      backdrop: data.payload.backdrop_path,
+    },
+  ];
+
+  useEffect(() => {
+    const dataFromLocalStorage = localStorage.getItem('movieData');
+    if (dataFromLocalStorage) {
+      dispatch(addMovies(JSON.parse(dataFromLocalStorage)));
+    }
+  }, [dispatch]);
+
   return (
     <div>
-      <h1>{title}</h1>
-      <h2>{id}</h2>
+      {dataObject.map((event) => {
+        return (
+          <div key={event.id}>
+            {event.title}
+            <img
+              src={`https://image.tmdb.org/t/p/original/${event.backdrop}`}
+              alt='poster'
+            />
+          </div>
+        );
+      })}
     </div>
   );
 }

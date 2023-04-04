@@ -1,34 +1,28 @@
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addMovies } from '../../redux/actions/movieActions';
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 export default function MovieCard() {
   const [dataFilms, setDataFilms] = useState([]);
-  const [titles, setTitles] = useState([]);
-  const [backdrops, setBackdrops] = useState([]);
-  const movies = useSelector((state) => state);
   const dispatch = useDispatch();
-  const { id } = useParams();
 
-  const addFavori = () => {
+  const addFavori = (id) => {
     axios
       .get(
         `https://api.themoviedb.org/3/movie/${id}?api_key=599ded6f0fc3bcaee1882e83ae0d438a`
       )
       .then(({ data }) => {
-        setTitles(data.original_title);
-        setBackdrops(data.backdrop_path);
+        localStorage.setItem(
+          'movieData',
+          (dispatch(addMovies(data)), JSON.stringify(dispatch(addMovies(data))))
+        );
       });
-    dispatch(
-      addMovies({
-        id: { id },
-        title: titles,
-        backdrop: backdrops,
-      })
-    );
   };
+
+  useEffect(() => {
+    addFavori();
+  });
 
   const removeFavori = () => {
     alert('TEST');
@@ -60,8 +54,10 @@ export default function MovieCard() {
               />
               <div className='text-lg mt-2 '>
                 <button
-                  className='w-20 h-12 text-center bg-cyan-500 outline outline-offset-2 outline-cyan-500 m-2 rounded-md'
-                  onClick={addFavori}
+                  className='w-20 h-12 (text-center bg-cyan-500 outline outline-offset-2 outline-cyan-500 m-2 rounded-md'
+                  onClick={() => {
+                    addFavori(data.id);
+                  }}
                 >
                   Add
                 </button>

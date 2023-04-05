@@ -7,10 +7,9 @@ export const addMovies = (movie) => {
   };
 };
 
-// export const getDataFromLocalStorage = () => {
-//   const data = localStorage.getItem('myData');
-//   return {
-//     type: ActionType.GET_DATA,
-//     payload: data ? JSON.parse(data) : null,
-//   };
-// };
+export const addMovies2 = (movie2) => {
+  return {
+    type: ActionType.ADD_MOVIE2,
+    payload: movie2,
+  };
+};

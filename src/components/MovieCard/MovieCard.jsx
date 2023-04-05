@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addMovies } from '../../redux/actions/movieActions';
+import { addMovies2 } from '../../redux/actions/movieActions';
 import axios from 'axios';
 
 export default function MovieCard() {
@@ -13,10 +14,19 @@ export default function MovieCard() {
         `https://api.themoviedb.org/3/movie/${id}?api_key=599ded6f0fc3bcaee1882e83ae0d438a`
       )
       .then(({ data }) => {
-        localStorage.setItem(
-          'movieData',
-          (dispatch(addMovies(data)), JSON.stringify(dispatch(addMovies(data))))
-        );
+        if (localStorage.getItem('movieData') === null) {
+          localStorage.setItem(
+            'movieData',
+            (dispatch(addMovies(data)),
+            JSON.stringify(dispatch(addMovies(data))))
+          );
+        } else {
+          localStorage.setItem(
+            'movieData2',
+            (dispatch(addMovies2(data)),
+            JSON.stringify(dispatch(addMovies2(data))))
+          );
+        }
       });
   };
 

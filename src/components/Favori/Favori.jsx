@@ -33,7 +33,9 @@ function Favori() {
             key={event.id}
             className='bg-stone-200 m-10 border-solid border-2 border-stone-700 w-[23%] h-[200px] overflow-hidden outline outline-offset-2 outline-black-500 rounded-md	'
           >
-            <h1 className='text-4xl font-bold'>{event.title}</h1>
+            <h1 className='text-center w-[438px] h-[40px] text-4xl font-bold'>
+              {event.title}
+            </h1>
             <img
               className='w-[100%] h-[79.5%]'
               src={`https://image.tmdb.org/t/p/original/${event.backdrop}`}

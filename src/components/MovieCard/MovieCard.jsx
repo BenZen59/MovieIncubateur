@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addMovies } from '../../redux/actions/movieActions';
 import { addMovies2 } from '../../redux/actions/movieActions';
+import { addMovies3 } from '../../redux/actions/movieActions';
+import { addMovies4 } from '../../redux/actions/movieActions';
+import { addMovies5 } from '../../redux/actions/movieActions';
 import axios from 'axios';
 
 export default function MovieCard() {
@@ -20,12 +23,32 @@ export default function MovieCard() {
             (dispatch(addMovies(data)),
             JSON.stringify(dispatch(addMovies(data))))
           );
-        } else {
+        } else if (localStorage.getItem('movieData2') === null) {
           localStorage.setItem(
             'movieData2',
             (dispatch(addMovies2(data)),
             JSON.stringify(dispatch(addMovies2(data))))
           );
+        } else if (localStorage.getItem('movieData3') === null) {
+          localStorage.setItem(
+            'movieData3',
+            (dispatch(addMovies3(data)),
+            JSON.stringify(dispatch(addMovies3(data))))
+          );
+        } else if (localStorage.getItem('movieData4') === null) {
+          localStorage.setItem(
+            'movieData4',
+            (dispatch(addMovies4(data)),
+            JSON.stringify(dispatch(addMovies4(data))))
+          );
+        } else if (localStorage.getItem('movieData5') === null) {
+          localStorage.setItem(
+            'movieData5',
+            (dispatch(addMovies5(data)),
+            JSON.stringify(dispatch(addMovies5(data))))
+          );
+        } else {
+          alert('Nombre de favoris max atteint !');
         }
       });
   };

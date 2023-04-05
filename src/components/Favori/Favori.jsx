@@ -29,12 +29,19 @@ function Favori() {
     <div>
       {dataObject.map((event) => {
         return (
-          <div key={event.id}>
-            {event.title}
+          <div
+            key={event.id}
+            className='bg-stone-200 m-10 border-solid border-2 border-stone-700 w-[23%] h-[200px] overflow-hidden outline outline-offset-2 outline-black-500 rounded-md	'
+          >
+            <h1 className='text-4xl font-bold'>{event.title}</h1>
             <img
+              className='w-[100%] h-[79.5%]'
               src={`https://image.tmdb.org/t/p/original/${event.backdrop}`}
               alt='poster'
             />
+            <button className='absolute w-12 h-8 text-xs text-center bg-orange-500 outline outline-offset-2 outline-orange-500 border-none rounded-md ml-[19.7%] mt-[-45px]'>
+              Details
+            </button>
           </div>
         );
       })}

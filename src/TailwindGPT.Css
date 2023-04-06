@@ -1,0 +1,111 @@
+.backgroundPoster {
+  @apply w-72 h-108;
+}
+
+.infoFilm {
+  @apply flex bg-gray-900 mt-16 pl-80 pt-10 pb-10;
+}
+
+.info {
+  @apply ml-10 mt-2;
+}
+
+.genre {
+  @apply flex;
+}
+
+.title {
+  @apply text-4xl font-bold text-white font-system;
+}
+
+.year {
+  @apply text-4xl text-white font-system;
+}
+
+.text {
+  @apply text-lg text-white font-system;
+}
+
+.synopsis {
+  @apply text-xl font-bold text-white font-system;
+}
+
+.director {
+  @apply font-bold text-white font-system;
+}
+
+.overview {
+  @apply w-13/14;
+}
+
+.actors {
+  @apply flex justify-center items-center overflow-x-auto w-5/12 h-96 ml-96 mb-20 pl-96;
+}
+
+.actors::-webkit-scrollbar {
+  @apply w-4;
+}
+
+.actors::-webkit-scrollbar-track {
+  @apply bg-gray-400 rounded-full;
+}
+
+.actors::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
+}
+
+.actors::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500;
+}
+
+.actors > div img {
+  @apply h-44 w-40 shadow-lg rounded-t-lg;
+}
+
+.actors > div {
+  @apply m-4;
+}
+
+.actors > div p {
+  @apply text-lg bg-gray-900 text-white shadow-lg w-36 h-14 pt-2 pb-2 pl-2 pr-2 rounded-b-lg;
+}
+
+.actors > div span {
+  @apply font-bold;
+}
+
+.teteAffiche {
+  @apply text-2xl ml-96 font-system;
+}
+
+svg {
+  @apply h-40 w-40;
+}
+
+svg circle {
+  @apply fill-none stroke-green-500 stroke-5 transform translate-x-1 translate-y-1 stroke-dasharray-174 stroke-linecap-round;
+}
+
+svg circle:nth-child(1) {
+  @apply stroke-gray-500 stroke-dashoffset-1;
+}
+
+svg circle:nth-child(2) {
+  @apply animate-circle;
+}
+
+.rating {
+  @apply absolute ml-[-136px] mt-4 text-lg font-bold text-white font-system;
+}
+
+.noteutilisateurs {
+  @apply font-bold text-lg font-system ml-[-75px] mt-4;
+}
+
+.espaceNote {
+  @apply flex h-16;
+}
+
+.buttonaddlist {
+  @apply w-11 h-11 rounded-full border-2 border-white m-2 cursor-pointer;
+}

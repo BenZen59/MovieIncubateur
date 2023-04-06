@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { addMovies } from '../../redux/actions/movieActions';
 import { addMovies2 } from '../../redux/actions/movieActions';
 import { addMovies3 } from '../../redux/actions/movieActions';
@@ -100,9 +101,11 @@ export default function MovieCard() {
                 >
                   Remove
                 </button>
-                <button className='w-20 h-12 text-center bg-orange-500 outline outline-offset-2 outline-orange-500 border-none m-2 rounded-md'>
-                  Details
-                </button>
+                <Link to={`/details/${data.id}`}>
+                  <button className='w-20 h-12 text-center bg-orange-500 outline outline-offset-2 outline-orange-500 border-none m-2 rounded-md'>
+                    Details
+                  </button>
+                </Link>
               </div>
             </div>
           );

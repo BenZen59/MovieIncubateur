@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import Play from '../../img/play.png';
 import star1 from '../../img/star1.png';
 import star2 from '../../img/star2.png';
 import star3 from '../../img/star3.png';
@@ -14,7 +13,6 @@ export default function Details() {
   const [numberVotes, setNumberVotes] = useState([]);
   const [backdrops, setBackdrops] = useState([]);
   const [directors, setDirectors] = useState([]);
-  const [trailers, setTrailers] = useState([]);
   const [overviews, setOverviews] = useState([]);
   const [runtimes, setRuntimes] = useState([]);
   const [releaseDates, setReleaseDates] = useState([]);
@@ -25,19 +23,15 @@ export default function Details() {
   const { id } = useParams();
 
   const Star = () => {
-    if (voteAverages === 10) {
-      return star5;
-    }
-    if (voteAverages < 10 && voteAverages >= 8) {
-      return star4;
-    }
-    if (voteAverages < 8 && voteAverages >= 6) {
-      return star3;
-    }
-    if (voteAverages < 6 && voteAverages >= 4) {
-      return star2;
-    }
-    return star1;
+    return voteAverages === 10
+      ? star5
+      : voteAverages < 10 && voteAverages >= 8
+      ? star4
+      : voteAverages < 8 && voteAverages >= 6
+      ? star3
+      : voteAverages < 6 && voteAverages >= 4
+      ? star2
+      : star1;
   };
 
   useEffect(() => {
@@ -88,19 +82,6 @@ export default function Details() {
       });
   }, []);
 
-  useEffect(() => {
-    axios
-      .get(
-        `https://api.themoviedb.org/3/movie/${id}/videos?api_key=599ded6f0fc3bcaee1882e83ae0d438a`
-      )
-      .then(({ data }) => {
-        setTrailers(data.results);
-      })
-      .catch(() => {
-        setTrailers([]);
-      });
-  }, []);
-
   const DateYearOnly = (date) => {
     const year = new Date(date);
     return year.getFullYear();
@@ -112,17 +93,23 @@ export default function Details() {
   };
 
   const Runtime = () => {
-    if (runtimes > 59) {
-      const hour = (runtimes - (runtimes % 60)) / 60;
-      const min = setRuntimes % 60;
-      return `${hour} H ${min} `;
-    }
-    return `${runtimes} min`;
+    const hours = Math.floor(runtimes / 60);
+    const remainingMinutes = runtimes % 60;
+    const formattedHours = hours < 10 ? `0${hours}` : hours;
+    const formattedMinutes =
+      remainingMinutes < 10 ? `0${remainingMinutes}` : remainingMinutes;
+    return `${formattedHours} H ${formattedMinutes}`;
+  };
+
+  const FixedScore = () => {
+    let fixedScore;
+    fixedScore = parseFloat(voteAverages).toFixed(1);
+    return fixedScore;
   };
 
   return (
     <div>
-      <div className='infoFilm flex bg-gray-900 mt-16 pl-80 pt-10 pb-10'>
+      <div className='infoFilm flex bg-gray-800 mt-16 pl-80 pt-10 pb-10'>
         <img
           className='backgroundPoster w-72 h-108'
           src={`https://image.tmdb.org/t/p/original${backdrops}`}
@@ -152,47 +139,27 @@ export default function Details() {
               </div>
               • {Runtime()}
             </div>
-            <br />
             <div className='espaceNote flex h-16'>
               <div className='boxRating'>
-                <p>{titles}</p>
+                <br />
                 <p className='vote'>
-                  <img className='starScore' src={Star()} alt='starScore' />
-
-                  <br />
+                  <span className='noteutilisateurs font-bold text-lg font-system'>
+                    Note des utilisateurs
+                  </span>
+                  <div className='flex'>
+                    <img className='starScore' src={Star()} alt='starScore' />
+                    <span className='rating ml-4 mt-1'>{FixedScore()}/10</span>
+                  </div>
                   <div className='numberVote'>{numberVotes} votes</div>
                 </p>
               </div>
-              <span className='noteutilisateurs font-bold text-lg font-system'>
-                Note des utilisateurs
-              </span>
-
-              {typeof trailer !== 'undefined' &&
-                trailers
-                  .filter((trailer) => trailer.type.includes('Trailer'))
-                  .map((trailer) => {
-                    return (
-                      <>
-                        <a
-                          href={`https://www.youtube.com/embed/${trailer.key}`}
-                          target='_blank'
-                          rel='noreferrer'
-                        >
-                          <button className='buttonplay' title={trailer.name}>
-                            <img src={Play} alt='imagetrailer' />
-                          </button>
-                        </a>
-                      </>
-                    );
-                  })}
             </div>
             <br />
-            <span className='synopsis text-xl font-bold text-white font-system'>
+            <div className='synopsis  mt-[50px] text-xl font-bold text-white font-system'>
               Synopsis
-            </span>
-            <br />
-            <br />
-            <div className='overview w-13/14'>{overviews}</div>
+            </div>
+
+            <div className='overview w-[1250px]'>{overviews}</div>
             <br />
             {directors
               .filter(
@@ -213,8 +180,10 @@ export default function Details() {
           </span>
         </div>
       </div>
-      <h3 className='teteAffiche'>Têtes d'affiche</h3>
-      <div className='actors flex justify-center items-center overflow-x-auto w-5/12 h-96 ml-96 mb-20 pl-96'>
+      <h3 className='teteAffiche text-2xl ml-96 mt-8 mb-6 font-system'>
+        Têtes d'affiche
+      </h3>
+      <div className='actors flex justify-center items-center overflow-x-auto w-[1360px] h-96 ml-96 mt-[-40px] pl-96'>
         {actors
           .filter((actor) => actor.order < 10)
           .map((actor) => {
@@ -223,13 +192,13 @@ export default function Details() {
               : `https://via.placeholder.com/220x330/FFFFFF/000000/?text=no image`;
 
             return (
-              <div className='m-4'>
+              <div className='m-4 mt-10'>
                 <img
                   className='h-44 w-40 shadow-lg rounded-t-lg'
                   src={actorPoster}
                   alt='actor'
                 />
-                <p className='text-lg bg-gray-900 text-white shadow-lg w-36 h-14 pt-2 pb-2 pl-2 pr-2 rounded-b-lg'>
+                <p className='text-lg bg-gray-800 text-white shadow-lg w-36 h-15 pt-2 pb-2 pl-2 pr-2 rounded-b-lg overflow-hidden'>
                   <span className='font-bold'>{actor.name}</span>
                   <br />
                   {actor.character}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { addMovies } from '../../redux/actions/movieActions';
 import { addMovies2 } from '../../redux/actions/movieActions';
 import { addMovies3 } from '../../redux/actions/movieActions';
@@ -19,6 +20,7 @@ function Favori() {
   try {
     dataObject = [
       {
+        id: data.payload.id,
         title: data.payload.title,
         backdrop: data.payload.backdrop_path,
       },
@@ -30,6 +32,7 @@ function Favori() {
   try {
     dataObject2 = [
       {
+        id: data2.payload.id,
         title: data2.payload.title,
         backdrop: data2.payload.backdrop_path,
       },
@@ -41,6 +44,7 @@ function Favori() {
   try {
     dataObject3 = [
       {
+        id: data3.payload.id,
         title: data3.payload.title,
         backdrop: data3.payload.backdrop_path,
       },
@@ -52,6 +56,7 @@ function Favori() {
   try {
     dataObject4 = [
       {
+        id: data4.payload.id,
         title: data4.payload.title,
         backdrop: data4.payload.backdrop_path,
       },
@@ -63,6 +68,7 @@ function Favori() {
   try {
     dataObject5 = [
       {
+        id: data5.payload.id,
         title: data5.payload.title,
         backdrop: data5.payload.backdrop_path,
       },
@@ -107,7 +113,7 @@ function Favori() {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className='flex flex-wrap '>
       {dataObject.map((event) => {
         return (
           <div
@@ -122,9 +128,11 @@ function Favori() {
               src={`https://image.tmdb.org/t/p/original/${event.backdrop}`}
               alt='poster'
             />
-            <button className='absolute w-12 h-8 text-xs text-center bg-orange-500 outline outline-offset-2 outline-orange-500 border-none rounded-md ml-[19.7%] mt-[-45px]'>
-              Details
-            </button>
+            <Link to={`/details/${event.id}`}>
+              <button className='absolute w-12 h-8 text-xs text-center bg-orange-500 outline outline-offset-2 outline-orange-500 border-none rounded-md ml-[19.7%] mt-[-45px]'>
+                Details
+              </button>
+            </Link>
           </div>
         );
       })}
@@ -142,9 +150,11 @@ function Favori() {
               src={`https://image.tmdb.org/t/p/original/${event.backdrop}`}
               alt='poster'
             />
-            <button className='absolute w-12 h-8 text-xs text-center bg-orange-500 outline outline-offset-2 outline-orange-500 border-none rounded-md ml-[19.7%] mt-[-45px]'>
-              Details
-            </button>
+            <Link to={`/details/${event.id}`}>
+              <button className='absolute w-12 h-8 text-xs text-center bg-orange-500 outline outline-offset-2 outline-orange-500 border-none rounded-md ml-[19.7%] mt-[-45px]'>
+                Details
+              </button>
+            </Link>
           </div>
         );
       })}
@@ -162,9 +172,11 @@ function Favori() {
               src={`https://image.tmdb.org/t/p/original/${event.backdrop}`}
               alt='poster'
             />
-            <button className='absolute w-12 h-8 text-xs text-center bg-orange-500 outline outline-offset-2 outline-orange-500 border-none rounded-md ml-[19.7%] mt-[-45px]'>
-              Details
-            </button>
+            <Link to={`/details/${event.id}`}>
+              <button className='absolute w-12 h-8 text-xs text-center bg-orange-500 outline outline-offset-2 outline-orange-500 border-none rounded-md ml-[19.7%] mt-[-45px]'>
+                Details
+              </button>
+            </Link>
           </div>
         );
       })}
@@ -182,9 +194,11 @@ function Favori() {
               src={`https://image.tmdb.org/t/p/original/${event.backdrop}`}
               alt='poster'
             />
-            <button className='absolute w-12 h-8 text-xs text-center bg-orange-500 outline outline-offset-2 outline-orange-500 border-none rounded-md ml-[19.7%] mt-[-45px]'>
-              Details
-            </button>
+            <Link to={`/details/${event.id}`}>
+              <button className='absolute w-12 h-8 text-xs text-center bg-orange-500 outline outline-offset-2 outline-orange-500 border-none rounded-md ml-[19.7%] mt-[-45px]'>
+                Details
+              </button>
+            </Link>
           </div>
         );
       })}
@@ -192,7 +206,7 @@ function Favori() {
         return (
           <div
             key={event.id}
-            className='bg-stone-200 m-10 border-solid border-2 border-stone-700 w-[23%] h-[200px] overflow-hidden outline outline-offset-2 outline-black-500 rounded-md	'
+            className='bg-stone-200 m-10 border-solid border-2 border-stone-700 w-[23%] h-[200px] overflow-hidden outline outline-offset-2 outline-black-500 rounded-md '
           >
             <h1 className='text-center w-[438px] h-[40px] text-4xl font-bold'>
               {event.title}
@@ -202,9 +216,11 @@ function Favori() {
               src={`https://image.tmdb.org/t/p/original/${event.backdrop}`}
               alt='poster'
             />
-            <button className='absolute w-12 h-8 text-xs text-center bg-orange-500 outline outline-offset-2 outline-orange-500 border-none rounded-md ml-[19.7%] mt-[-45px]'>
-              Details
-            </button>
+            <Link to={`/details/${event.id}`}>
+              <button className='absolute w-12 h-8 text-xs text-center bg-orange-500 outline outline-offset-2 outline-orange-500 border-none rounded-md ml-[19.7%] mt-[-45px]'>
+                Details
+              </button>
+            </Link>
           </div>
         );
       })}

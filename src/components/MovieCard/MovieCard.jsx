@@ -6,6 +6,7 @@ import { addMovies2 } from '../../redux/actions/movieActions';
 import { addMovies3 } from '../../redux/actions/movieActions';
 import { addMovies4 } from '../../redux/actions/movieActions';
 import { addMovies5 } from '../../redux/actions/movieActions';
+import SwitchPages from '../SwitchPages/SwitchPages';
 import axios from 'axios';
 
 export default function MovieCard() {
@@ -58,10 +59,6 @@ export default function MovieCard() {
     addFavori();
   });
 
-  const removeFavori = () => {
-    alert('TEST');
-  };
-
   useEffect(() => {
     axios
       .get(
@@ -72,8 +69,13 @@ export default function MovieCard() {
       });
   }, []);
 
+  const removeFavori = () => {
+    alert('TEST');
+  };
+
   return (
     <>
+      <SwitchPages />
       <div className='flex flex-wrap'>
         {dataFilms.map((data) => {
           return (

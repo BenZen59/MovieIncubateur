@@ -6,6 +6,7 @@ const initialState = {
   movies3: [],
   movies4: [],
   movies5: [],
+  pages: [],
 };
 
 export const movieReducer = (state = initialState, { type, payload }) => {
@@ -20,7 +21,8 @@ export const movieReducer = (state = initialState, { type, payload }) => {
       return { ...state, movies4: payload };
     case ActionType.ADD_MOVIE5:
       return { ...state, movies5: payload };
-
+    case ActionType.SWITCH_PAGES:
+      return { ...state, pages: payload };
     default:
       return state;
   }

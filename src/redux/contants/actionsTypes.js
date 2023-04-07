@@ -5,4 +5,5 @@ export const ActionType = {
   ADD_MOVIE4: 'ADD_MOVIE4',
   ADD_MOVIE5: 'ADD_MOVIE5',
   REMOVE_MOVIE: 'REMOVE_MOVIE',
+  SWITCH_PAGES: 'SWITCH_PAGES',
 };

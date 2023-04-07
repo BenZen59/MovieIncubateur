@@ -34,3 +34,10 @@ export const addMovies5 = (movie5) => {
     payload: movie5,
   };
 };
+
+export const switchPages = (page) => {
+  return {
+    type: ActionType.SWITCH_PAGES,
+    payload: page,
+  };
+};

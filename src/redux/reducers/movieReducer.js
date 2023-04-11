@@ -32,7 +32,7 @@ export const movieReducer = (state = initialState, { type, payload }) => {
     case ActionType.REMOVE_MOVIE5:
       return { ...state, movies5: payload };
     case ActionType.SWITCH_PAGES:
-      break;
+      return { ...state, pages: payload };
     default:
       return state;
   }

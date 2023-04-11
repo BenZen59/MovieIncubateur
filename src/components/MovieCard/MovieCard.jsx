@@ -9,6 +9,8 @@ import {
   addMovies4,
   addMovies5,
 } from '../../redux/actions/movieActions';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
 export default function MovieCard() {
@@ -29,43 +31,53 @@ export default function MovieCard() {
   const [recupSwitch, setRecupSwitch] = useState();
   const dispatch = useDispatch();
 
+  const notifyAdd = () => toast.success('Film ajouté dans les favoris !');
+  const notifyListIsFull = () => toast.error('Nombre de favoris max atteint !');
+
   const addFavori = (id) => {
     axios
       .get(
         `https://api.themoviedb.org/3/movie/${id}?api_key=599ded6f0fc3bcaee1882e83ae0d438a`
       )
       .then(({ data }) => {
-        localStorage.getItem('movieData') === null
-          ? localStorage.setItem(
-              'movieData',
-              (dispatch(addMovies(data)),
-              JSON.stringify(dispatch(addMovies(data))))
-            )
-          : localStorage.getItem('movieData2') === null
-          ? localStorage.setItem(
-              'movieData2',
-              (dispatch(addMovies2(data)),
-              JSON.stringify(dispatch(addMovies2(data))))
-            )
-          : localStorage.getItem('movieData3') === null
-          ? localStorage.setItem(
-              'movieData3',
-              (dispatch(addMovies3(data)),
-              JSON.stringify(dispatch(addMovies3(data))))
-            )
-          : localStorage.getItem('movieData4') === null
-          ? localStorage.setItem(
-              'movieData4',
-              (dispatch(addMovies4(data)),
-              JSON.stringify(dispatch(addMovies4(data))))
-            )
-          : localStorage.getItem('movieData5') === null
-          ? localStorage.setItem(
-              'movieData5',
-              (dispatch(addMovies5(data)),
-              JSON.stringify(dispatch(addMovies5(data))))
-            )
-          : alert('Nombre de favoris max atteint !');
+        if (localStorage.getItem('movieData') === null) {
+          notifyAdd();
+          localStorage.setItem(
+            'movieData',
+            (dispatch(addMovies(data)),
+            JSON.stringify(dispatch(addMovies(data))))
+          );
+        } else if (localStorage.getItem('movieData2') === null) {
+          notifyAdd();
+          localStorage.setItem(
+            'movieData2',
+            (dispatch(addMovies2(data)),
+            JSON.stringify(dispatch(addMovies2(data))))
+          );
+        } else if (localStorage.getItem('movieData3') === null) {
+          notifyAdd();
+          localStorage.setItem(
+            'movieData3',
+            (dispatch(addMovies3(data)),
+            JSON.stringify(dispatch(addMovies3(data))))
+          );
+        } else if (localStorage.getItem('movieData4') === null) {
+          notifyAdd();
+          localStorage.setItem(
+            'movieData4',
+            (dispatch(addMovies4(data)),
+            JSON.stringify(dispatch(addMovies4(data))))
+          );
+        } else if (localStorage.getItem('movieData5') === null) {
+          notifyAdd();
+          localStorage.setItem(
+            'movieData5',
+            (dispatch(addMovies5(data)),
+            JSON.stringify(dispatch(addMovies5(data))))
+          );
+        } else {
+          notifyListIsFull();
+        }
       });
   };
 
@@ -178,6 +190,7 @@ export default function MovieCard() {
           );
         })}
       </div>
+      <ToastContainer />
     </>
   );
 }

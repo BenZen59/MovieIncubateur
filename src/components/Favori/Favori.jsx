@@ -2,11 +2,18 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { addMovies } from '../../redux/actions/movieActions';
-import { addMovies2 } from '../../redux/actions/movieActions';
-import { addMovies3 } from '../../redux/actions/movieActions';
-import { addMovies4 } from '../../redux/actions/movieActions';
-import { addMovies5 } from '../../redux/actions/movieActions';
+import {
+  addMovies,
+  addMovies2,
+  addMovies3,
+  addMovies4,
+  addMovies5,
+  removeMovies1,
+  removeMovies2,
+  removeMovies3,
+  removeMovies4,
+  removeMovies5,
+} from '../../redux/actions/movieActions';
 
 function Favori() {
   const dispatch = useDispatch();
@@ -128,6 +135,15 @@ function Favori() {
               src={`https://image.tmdb.org/t/p/original/${event.backdrop}`}
               alt='poster'
             />
+            <button
+              className='absolute w-12 h-8 text-xs text-center bg-red-500 outline outline-offset-2 outline-red-500 border-none rounded-md ml-[16%] mt-[-45px]'
+              onClick={() => {
+                removeMovies1();
+                window.location.reload();
+              }}
+            >
+              Remove
+            </button>
             <Link to={`/details/${event.id}`}>
               <button className='absolute w-12 h-8 text-xs text-center bg-orange-500 outline outline-offset-2 outline-orange-500 border-none rounded-md ml-[19.7%] mt-[-45px]'>
                 Details
@@ -150,6 +166,15 @@ function Favori() {
               src={`https://image.tmdb.org/t/p/original/${event.backdrop}`}
               alt='poster'
             />
+            <button
+              className='absolute w-12 h-8 text-xs text-center bg-red-500 outline outline-offset-2 outline-red-500 border-none rounded-md ml-[16%] mt-[-45px]'
+              onClick={() => {
+                removeMovies2();
+                window.location.reload();
+              }}
+            >
+              Remove
+            </button>
             <Link to={`/details/${event.id}`}>
               <button className='absolute w-12 h-8 text-xs text-center bg-orange-500 outline outline-offset-2 outline-orange-500 border-none rounded-md ml-[19.7%] mt-[-45px]'>
                 Details
@@ -172,6 +197,15 @@ function Favori() {
               src={`https://image.tmdb.org/t/p/original/${event.backdrop}`}
               alt='poster'
             />
+            <button
+              className='absolute w-12 h-8 text-xs text-center bg-red-500 outline outline-offset-2 outline-red-500 border-none rounded-md ml-[16%] mt-[-45px]'
+              onClick={() => {
+                removeMovies3();
+                window.location.reload();
+              }}
+            >
+              Remove
+            </button>
             <Link to={`/details/${event.id}`}>
               <button className='absolute w-12 h-8 text-xs text-center bg-orange-500 outline outline-offset-2 outline-orange-500 border-none rounded-md ml-[19.7%] mt-[-45px]'>
                 Details
@@ -194,6 +228,15 @@ function Favori() {
               src={`https://image.tmdb.org/t/p/original/${event.backdrop}`}
               alt='poster'
             />
+            <button
+              className='absolute w-12 h-8 text-xs text-center bg-red-500 outline outline-offset-2 outline-red-500 border-none rounded-md ml-[16%] mt-[-45px]'
+              onClick={() => {
+                removeMovies4();
+                window.location.reload();
+              }}
+            >
+              Remove
+            </button>
             <Link to={`/details/${event.id}`}>
               <button className='absolute w-12 h-8 text-xs text-center bg-orange-500 outline outline-offset-2 outline-orange-500 border-none rounded-md ml-[19.7%] mt-[-45px]'>
                 Details
@@ -216,6 +259,15 @@ function Favori() {
               src={`https://image.tmdb.org/t/p/original/${event.backdrop}`}
               alt='poster'
             />
+            <button
+              className='absolute w-12 h-8 text-xs text-center bg-red-500 outline outline-offset-2 outline-red-500 border-none rounded-md ml-[16%] mt-[-45px]'
+              onClick={() => {
+                removeMovies5();
+                window.location.reload();
+              }}
+            >
+              Remove
+            </button>
             <Link to={`/details/${event.id}`}>
               <button className='absolute w-12 h-8 text-xs text-center bg-orange-500 outline outline-offset-2 outline-orange-500 border-none rounded-md ml-[19.7%] mt-[-45px]'>
                 Details

@@ -8,7 +8,11 @@ function ResultCard(movie) {
     : `https://via.placeholder.com/220x330/FFFFFF/000000/?text=No poster`;
   return (
     <div className='ml-[39%] mt-3 mb- w-[565px] h-[68px] bg-stone-200 outline outline-offset-2 outline-black-500 rounded-md relative z-50'>
-      <Link to={`/details/${id}`} className='flex'>
+      <Link
+        to={`/details/${id}`}
+        className='flex'
+        onClick={window.location.reload}
+      >
         <img
           className='w-[36px] h-[48px] m-3'
           src={poster}

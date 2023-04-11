@@ -35,6 +35,37 @@ export const addMovies5 = (movie5) => {
   };
 };
 
+export const removeMovies1 = () => {
+  return {
+    type: ActionType.REMOVE_MOVIE1,
+  };
+};
+
+export const removeMovies2 = () => {
+  return {
+    type: ActionType.REMOVE_MOVIE2,
+  };
+};
+
+export const removeMovies3 = () => {
+  return {
+    type: ActionType.REMOVE_MOVIE3,
+  };
+};
+
+export const removeMovies4 = () => {
+  return {
+    type: ActionType.REMOVE_MOVIE4,
+  };
+};
+
+export const removeMovies5 = () => {
+  return {
+    type: ActionType.REMOVE_MOVIE5,
+    payload: localStorage.removeItem('movieData5'),
+  };
+};
+
 export const switchPages = (page) => {
   return {
     type: ActionType.SWITCH_PAGES,

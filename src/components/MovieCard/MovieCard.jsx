@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addMovies } from '../../redux/actions/movieActions';
-import { addMovies2 } from '../../redux/actions/movieActions';
-import { addMovies3 } from '../../redux/actions/movieActions';
-import { addMovies4 } from '../../redux/actions/movieActions';
-import { addMovies5 } from '../../redux/actions/movieActions';
+import {
+  addMovies,
+  addMovies2,
+  addMovies3,
+  addMovies4,
+  addMovies5,
+} from '../../redux/actions/movieActions';
 import SwitchPages from '../SwitchPages/SwitchPages';
 import axios from 'axios';
 
@@ -19,39 +21,37 @@ export default function MovieCard() {
         `https://api.themoviedb.org/3/movie/${id}?api_key=599ded6f0fc3bcaee1882e83ae0d438a`
       )
       .then(({ data }) => {
-        if (localStorage.getItem('movieData') === null) {
-          localStorage.setItem(
-            'movieData',
-            (dispatch(addMovies(data)),
-            JSON.stringify(dispatch(addMovies(data))))
-          );
-        } else if (localStorage.getItem('movieData2') === null) {
-          localStorage.setItem(
-            'movieData2',
-            (dispatch(addMovies2(data)),
-            JSON.stringify(dispatch(addMovies2(data))))
-          );
-        } else if (localStorage.getItem('movieData3') === null) {
-          localStorage.setItem(
-            'movieData3',
-            (dispatch(addMovies3(data)),
-            JSON.stringify(dispatch(addMovies3(data))))
-          );
-        } else if (localStorage.getItem('movieData4') === null) {
-          localStorage.setItem(
-            'movieData4',
-            (dispatch(addMovies4(data)),
-            JSON.stringify(dispatch(addMovies4(data))))
-          );
-        } else if (localStorage.getItem('movieData5') === null) {
-          localStorage.setItem(
-            'movieData5',
-            (dispatch(addMovies5(data)),
-            JSON.stringify(dispatch(addMovies5(data))))
-          );
-        } else {
-          alert('Nombre de favoris max atteint !');
-        }
+        localStorage.getItem('movieData') === null
+          ? localStorage.setItem(
+              'movieData',
+              (dispatch(addMovies(data)),
+              JSON.stringify(dispatch(addMovies(data))))
+            )
+          : localStorage.getItem('movieData2') === null
+          ? localStorage.setItem(
+              'movieData2',
+              (dispatch(addMovies2(data)),
+              JSON.stringify(dispatch(addMovies2(data))))
+            )
+          : localStorage.getItem('movieData3') === null
+          ? localStorage.setItem(
+              'movieData3',
+              (dispatch(addMovies3(data)),
+              JSON.stringify(dispatch(addMovies3(data))))
+            )
+          : localStorage.getItem('movieData4') === null
+          ? localStorage.setItem(
+              'movieData4',
+              (dispatch(addMovies4(data)),
+              JSON.stringify(dispatch(addMovies4(data))))
+            )
+          : localStorage.getItem('movieData5') === null
+          ? localStorage.setItem(
+              'movieData5',
+              (dispatch(addMovies5(data)),
+              JSON.stringify(dispatch(addMovies5(data))))
+            )
+          : alert('Nombre de favoris max atteint !');
       });
   };
 
@@ -68,10 +68,6 @@ export default function MovieCard() {
         setDataFilms(data.results);
       });
   }, []);
-
-  const removeFavori = () => {
-    alert('TEST');
-  };
 
   return (
     <>
@@ -97,12 +93,7 @@ export default function MovieCard() {
                 >
                   Add
                 </button>
-                <button
-                  className='w-20 h-12 text-center bg-red-500 outline outline-offset-2 outline-red-500 border-none m-2 rounded-md'
-                  onClick={removeFavori}
-                >
-                  Remove
-                </button>
+
                 <Link to={`/details/${data.id}`}>
                   <button className='w-20 h-12 text-center bg-orange-500 outline outline-offset-2 outline-orange-500 border-none m-2 rounded-md'>
                     Details

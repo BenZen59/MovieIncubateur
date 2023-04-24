@@ -170,9 +170,9 @@ export default function MovieCard() {
                 src={`https://image.tmdb.org/t/p/original/${data.poster_path}`}
                 alt='imgmovie'
               />
-              <div className='text-lg mt-2 '>
+              <div className='text-lg mt-2'>
                 <button
-                  className='w-20 h-12 (text-center bg-cyan-500 outline outline-offset-2 outline-cyan-500 m-2 rounded-md'
+                  className='w-20 h-12 text-center bg-cyan-500 outline outline-offset-2 outline-cyan-500 m-2 rounded-md'
                   onClick={() => {
                     addFavori(data.id);
                   }}

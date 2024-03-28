@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   addMovies,
   addMovies2,
@@ -16,6 +16,7 @@ import {
 } from '../../redux/actions/movieActions';
 
 function Favori() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const data = useSelector((state) => state.allMovies.movies);
   const data2 = useSelector((state) => state.allMovies.movies2);
@@ -139,7 +140,7 @@ function Favori() {
               className='absolute w-12 h-8 text-xs text-center bg-red-500 outline outline-offset-2 outline-red-500 border-none rounded-md ml-[16%] mt-[-45px]'
               onClick={() => {
                 removeMovies1();
-                window.location.reload();
+               navigate(0);
               }}
             >
               Remove

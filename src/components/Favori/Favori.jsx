@@ -171,7 +171,7 @@ function Favori() {
               className='absolute w-12 h-8 text-xs text-center bg-red-500 outline outline-offset-2 outline-red-500 border-none rounded-md ml-[16%] mt-[-45px]'
               onClick={() => {
                 removeMovies2();
-                window.location.reload();
+                navigate(0);
               }}
             >
               Remove
@@ -202,7 +202,7 @@ function Favori() {
               className='absolute w-12 h-8 text-xs text-center bg-red-500 outline outline-offset-2 outline-red-500 border-none rounded-md ml-[16%] mt-[-45px]'
               onClick={() => {
                 removeMovies3();
-                window.location.reload();
+                navigate(0);
               }}
             >
               Remove
@@ -233,7 +233,7 @@ function Favori() {
               className='absolute w-12 h-8 text-xs text-center bg-red-500 outline outline-offset-2 outline-red-500 border-none rounded-md ml-[16%] mt-[-45px]'
               onClick={() => {
                 removeMovies4();
-                window.location.reload();
+                navigate(0);
               }}
             >
               Remove
@@ -264,7 +264,7 @@ function Favori() {
               className='absolute w-12 h-8 text-xs text-center bg-red-500 outline outline-offset-2 outline-red-500 border-none rounded-md ml-[16%] mt-[-45px]'
               onClick={() => {
                 removeMovies5();
-                window.location.reload();
+                navigate(0);
               }}
             >
               Remove
